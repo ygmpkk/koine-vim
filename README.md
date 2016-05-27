@@ -14,9 +14,15 @@
 目录结构
 
 ```
-
+├── README.md
+├── autoload
+│   └── plug.vim
+├── bundle
+├── config
+└── nvim
+    └── autoload
+        └── plug.vim
 ```
-
 
 ## 安装
 
