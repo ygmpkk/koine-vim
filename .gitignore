@@ -42,6 +42,6 @@ Session.vim
 # auto-generated tag files
 tags
 
-# bundle/
+bundle/
 session/
 files/
