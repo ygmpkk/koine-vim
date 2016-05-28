@@ -1,0 +1,285 @@
+augroup General
+	autocmd!
+	" 最后打开的位置
+	let g:lastplace_ignore = "gitcommit,svn,hg,hgcommit,asciidoc"
+	" 文件导航
+	let NERDTreeIgnore=['\.pyc']
+	let NERDTreeRespectWildIgnore=1
+	" 注释
+    let g:NERDSpaceDelims=1
+	" 默认关闭参考线
+	let g:indentLine_enabled = 0
+
+    " 状态条
+    let g:airline_powerline_fonts = 1
+    let g:Powerline_symbols = 'fancy'
+    let g:airline_theme='base16_atelierheath'
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#buffer_nr_show = 1
+    let g:airline_exclude_preview = 1
+
+    " 眼球追踪
+    let g:EasyMotion_smartcase = 1
+    "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+    
+    " Gundo 插件
+    let g:gundo_width = 60
+    let g:gundo_preview_height = 40
+    let g:gundo_right = 1
+
+    " 高亮演示匹配括号
+    let g:rbpt_colorpairs = [
+                \ [158, '#00ceb3'],
+                \ [081, '#00a3ff'],
+                \ [214, '#ff8d00'],
+                \ [123, '#3fffc9'],
+                \ [045, '#29b9ec'],
+                \ [190, '#bfec29'],
+                \ [208, '#ffad00'],
+                \ [117, '#48bde0'],
+                \ ]
+
+    let g:rbpt_max = 8
+    let g:rbpt_loadcmd_toggle = 0
+
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax c,cpp,go,h,java,python,javascript,scala,coffee RainbowParenthesesLoadSquare
+    au Syntax c,cpp,go,h,java,python,javascript,scala,coffee,scss  RainbowParenthesesLoadBraces
+augroup END
+
+augroup AutoMkdir
+    autocmd!
+    autocmd  BufNewFile  *  :call EnsureDirExists()
+augroup END
+
+augroup CtrlSpace
+    autocmd!
+    " 文件搜索
+    hi link CtrlSpaceNormal   PMenu
+    hi link CtrlSpaceSelected CursorLine
+    hi link CtrlSpaceSearch   Search
+    hi link CtrlSpaceStatus   StatusLine
+    let g:CtrlSpaceUseUnicode = 1
+    let g:CtrlSpaceProjectRootMarkers = [
+                \ ".git",
+                \ ".hg",
+                \ ".svn",
+                \ ".bzr",
+                \ "_darcs",
+                \ "CVS",
+                \ "node_modules",
+                \ "bower_components",
+                \ "vendor"
+                \ ]
+    let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp|\.\*pyc)[\/]'
+    let g:CtrlSpaceSearchTiming = 500
+    if executable("ag")
+        let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+    endif
+augroup END
+
+augroup Startify
+    autocmd!
+    let g:startify_skiplist = [
+                \ 'COMMIT_EDITMSG',
+                \ 'bundle/.*/doc',
+                \ 'node_modules/*',
+                \ 'bower_components/*',
+                \ ]
+
+    let g:startify_bookmarks = [
+                \ {'a1': '~/workspace'},
+                \ {'a2': '~/workspace/idcos'},
+                \ {'a3': '~/workspace/idcos/idcos-puppet-config'},
+                \ {'a4': '~/workspace/idcos/pack-cmd'},
+                \ {'a5': '~/workspace/iotalabs'},
+                \ {'a6': '~/workspace/iotalabs/src/github.com/iotalabs'},
+                \ {'a7': '~/workspace/shell-labs'},
+                \ {'a8': '~/workspace/shell-labs/chenyu'},
+                \ {'a9': '~/workspace/ygmpkk'},
+                \ {'aa': '~/workspace/ygmpkk/src/github.com/ygmpkk'},
+                \ {'ab': '~/workspace/timothy'},
+                \ {'ac': '~/Documents/Notes'},
+                \ {'ad': '~/workspace/idcos/hf-cfg-manager'},
+                \ {'ae': '~/workspace/idcos/hf-cfg-manager-ui'},
+                \ {'af': '~/workspace/idcos/hf-cmdbs-web'},
+                \ ]
+
+    let g:startify_transformations = [
+                \ ['.*vimrc$', 'vimrc'],
+                \ ]
+
+    " let g:startify_list_order = ['files', 'dir', 'bookmarks', 'sessions']
+    let g:startify_enable_speciali = 0
+    let g:startify_change_to_dir = 1
+    let g:startify_change_to_vcs_root = 1
+    let g:startify_session_autoload = 0
+    let g:startify_session_delete_buffers = 1
+    let g:startify_session_persistence = 1
+    let g:startify_update_oldfiles = 1
+	let g:startify_use_env = 1
+	let g:startify_files_number = 20
+augroup END
+
+augroup Tagbar
+	autocmd!
+	" tagbar
+	let g:tagbar_type_go = {
+				\ 'ctagstype' : 'go',
+				\ 'kinds'     : [
+				\ 'p:package',
+				\ 'i:imports:1',
+				\ 'c:constants',
+				\ 'v:variables',
+				\ 't:types',
+				\ 'n:interfaces',
+				\ 'w:fields',
+				\ 'e:embedded',
+				\ 'm:methods',
+				\ 'r:constructor',
+				\ 'f:functions'
+				\ ],
+				\ 'sro' : '.',
+				\ 'kind2scope' : {
+				\ 't' : 'ctype',
+				\ 'n' : 'ntype'
+				\ },
+				\ 'scope2kind' : {
+				\ 'ctype' : 't',
+				\ 'ntype' : 'n'
+				\ },
+				\ 'ctagsbin'  : 'gotags',
+				\ 'ctagsargs' : '-sort -silent'
+				\ }
+augroup END
+
+augroup YCM
+    autocmd!
+    " let g:ycm_python_binary_path = '/usr/local/opt/python/bin/python2.7'
+    let g:ycm_collect_identifiers_from_tags_files = 1
+    let g:ycm_seed_identifiers_with_syntax = 1
+    let g:ycm_confirm_extra_conf = 0
+    let g:ycm_min_num_of_chars_for_completion = 5
+    let g:ycm_auto_trigger = 0
+    let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+    let g:ycm_show_diagnostics_ui = 0
+    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+    let g:ycm_filetype_whitelist = { 
+                \ 'go': 1 ,
+                \ 'python': 1 
+                \ }
+    " 代码提示关键字
+    let g:ycm_semantic_triggers = {
+				\ 'elm' : ['.'],
+				\}
+augroup END
+
+augroup Syntastic
+	autocmd!
+    "syntastic相关
+    " set statusline+=%#warningmsg#
+    " set statusline+=%{SyntasticStatuslineFlag()}
+    " set statusline+=%*
+    let g:syntastic_quiet_messages = {'level': 'warnings'}
+    let g:syntastic_check_on_open=1
+    let g:syntastic_error_symbol='✗'
+    let g:syntastic_warning_symbol='⚠'
+
+	let g:syntastic_python_checkers=['pylint']
+	let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+	let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+	let g:syntastic_javascript_checkers = ['eslint', 'jslint']
+	let g:syntastic_mode_map = { 'mode': 'passive', 
+                \ 'active_filetypes': ['python', 'javascript'],
+                \ 'passive_filetypes': ['go'] 
+                \ }
+augroup END
+
+augroup Frontend
+	autocmd!
+	" Javascript代码检查
+	let $JS_CMD='node'
+	let g:JSLintHighlightErrorLine = 0
+
+	" frontend
+	let g:javascript_enable_domhtmlcss = 1
+	let g:javascript_fold = 0
+	let g:javascript_conceal_function       = "ƒ"
+	let g:javascript_conceal_null           = "ø"
+	let g:javascript_conceal_this           = "@"
+	let g:javascript_conceal_return         = "⇚"
+	let g:javascript_conceal_undefined      = "¿"
+	let g:javascript_conceal_NaN            = "ℕ"
+	let g:javascript_conceal_prototype      = "¶"
+	let g:javascript_conceal_static         = "•"
+	let g:javascript_conceal_super          = "Ω"
+	let g:javascript_conceal_arrow_function = "⇒"
+
+    " Html css
+    let g:closetag_html_style=1
+
+    " 自动闭合
+    autocmd FileType xml,html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
+augroup END
+
+augroup Go
+    autocmd!
+	" golang
+	" let $GOPATH = $HOME."/source/goenv"
+	" let g:go_bin_path = $HOME."/source/goenv/bin"
+	let g:go_disable_autoinstall = 0
+	let g:go_highlight_functions = 1
+	let g:go_highlight_methods = 1
+	let g:go_highlight_structs = 1
+	let g:go_highlight_operators = 1
+	let g:go_highlight_build_constraints = 1
+	" let g:fencview_autodetect=0
+	" set rtp+=$GOROOT/github.com/nsf/gocode/vim
+	let g:go_fmt_command = "goimports"
+	" let g:go_fmt_fail_silently = 1
+	" let g:go_fmt_autosave = 1
+	" let g:go_play_open_browser = 0
+	" let g:go_term_mode = "split"
+	" let g:go_term_enabled = 1
+    autocmd FileType go set noexpandtab
+    autocmd FileType go set foldmethod=indent
+augroup END
+
+augroup Elm
+	autocmd!
+    let g:elm_jump_to_error = 1
+    " let g:elm_make_output_file = "../dist/elm.js"
+    let g:elm_make_show_warnings = 1
+    let g:elm_syntastic_show_warnings = 0
+    let g:elm_browser_command = ""
+    let g:elm_detailed_complete = 0
+    let g:elm_format_autosave = 1
+    let g:elm_setup_keybindings = 1
+    let g:elm_classic_hightlighting = 1
+augroup END
+
+augroup Written
+	autocmd!
+    " Markdown
+    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+    let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+
+    " TaskPaper
+    let g:task_paper_date_format = "%Y-%m-%d %H:%M:%S"
+    let g:task_paper_archive_project = "~/Documents/Notes"
+
+    " Note 插件
+    let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Notes']
+    let g:notes_suffix = '.taskpaper'
+    " 'no' 'change_title' 'rename_file'
+    let g:notes_title_sync = 'rename_file'
+    let g:notes_unicode_enabled = 0
+    let g:notes_smart_quotes = 1
+    let g:notes_word_boundaries = 1
+augroup END
+
+" augroup
+" augroup END
+

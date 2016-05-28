@@ -1,0 +1,117 @@
+call plug#begin('~/.vim/bundle')
+
+""""""
+" 通用
+""""""
+
+" 启动器
+Plug 'mhinz/vim-startify'
+Plug 'scrooloose/nerdcommenter'
+" 目录树
+Plug 'scrooloose/nerdtree'
+" 眼球追踪
+Plug 'easymotion/vim-easymotion'
+" 多焦点选择
+Plug 'terryma/vim-multiple-cursors'
+" 搜索
+Plug 'vim-ctrlspace/vim-ctrlspace'
+" 状态栏
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" 补全和替换
+Plug 'Raimondi/delimitMate'
+" 有道字典
+Plug 'ianva/vim-youdao-translater'
+" 自动格式化
+Plug 'chiel92/vim-autoformat'
+" 打开文件最后的位置
+Plug 'dietsche/vim-lastplace'
+" 任务
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+Plug 'davidoc/taskpaper.vim'
+" Font
+Plug 'powerline/fonts'
+" Color
+Plug 'flazz/vim-colorschemes'
+" Search
+Plug 'rking/ag.vim'
+" Files
+Plug 'vim-scripts/FuzzyFinder'
+""""""
+" 写作
+""""""
+Plug 'plasticboy/vim-markdown'
+Plug 'IN3D/vim-raml'
+Plug 'leshill/vim-json'
+
+""""""
+" 编程
+""""""
+Plug 'janko-m/vim-test'
+Plug 'jrosiek/vim-mark'
+Plug 'kien/rainbow_parentheses.vim'
+" Command
+Plug 'tpope/vim-dispatch'
+" 标签
+Plug 'majutsushi/tagbar'
+" Dash配套
+Plug 'rizzatti/funcoo.vim'
+" Dash搜索
+Plug 'rizzatti/dash.vim'
+" 语法分析
+Plug 'scrooloose/syntastic'
+" 补全
+Plug 'tpope/vim-surround'
+" Git插件
+Plug 'tpope/vim-fugitive'
+" Git修改指示
+Plug 'airblade/vim-gitgutter'
+" Git撤销树
+Plug 'vim-scripts/Gundo'
+" 代码提示
+Plug 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" Golang
+Plug 'fatih/vim-go'
+" Erlang
+Plug 'vim-erlang/vim-erlang-runtime'
+Plug 'vim-erlang/vim-erlang-compiler'
+Plug 'vim-erlang/vim-erlang-omnicomplete'
+Plug 'vim-erlang/vim-erlang-tags'
+Plug 'ten0s/syntaxerl'
+" Elixir
+Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+" 前端
+" Javascript
+Plug 'othree/html5.vim'
+Plug 'groenewege/vim-less'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'ternjs/tern_for_vim'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'kchmck/vim-coffee-script'
+" Html
+Plug 'docunext/closetag.vim'
+" Elm
+Plug 'elmcast/elm-vim'
+" Ember
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'joukevandermaas/vim-ember-hbs'
+
+""""""
+" 其它
+""""""
+
+" FlowChart
+Plug 'vim-scripts/DrawIt'
+
+" Plug 'vim-scripts/L9'
+" " API Blurprint
+" Plug 'kylef/apiblueprint.vim'
+" " Shell
+" Plug 'Shougo/vimproc.vim'
+" Plug 'Shougo/vimshell.vim'
+call plug#end()
