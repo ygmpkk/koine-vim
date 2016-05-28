@@ -19,6 +19,11 @@
 │   └── plug.vim
 ├── bundle
 ├── config
+│   ├── gui
+│   ├── mapkeys
+│   ├── nvim
+│   ├── plugins
+│   └── plugins_config
 └── nvim
     └── autoload
         └── plug.vim
