@@ -1,3 +1,5 @@
+" vim: set ft=vim;
+
 call plug#begin('~/.vim/bundle')
 
 """"""
@@ -37,7 +39,7 @@ Plug 'flazz/vim-colorschemes'
 " Search
 Plug 'rking/ag.vim'
 " Files
-Plug 'vim-scripts/FuzzyFinder'
+" Plug 'vim-scripts/FuzzyFinder'
 """"""
 " 写作
 """"""
@@ -100,6 +102,8 @@ Plug 'elmcast/elm-vim'
 " Ember
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'joukevandermaas/vim-ember-hbs'
+" Python
+Plug 'klen/python-mode'
 
 """"""
 " 其它

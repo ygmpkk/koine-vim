@@ -1,14 +1,31 @@
+" vim:set ft=vim;
+
 augroup General
 	autocmd!
+
 	" 最后打开的位置
 	let g:lastplace_ignore = "gitcommit,svn,hg,hgcommit,asciidoc"
+
 	" 文件导航
-	let NERDTreeIgnore=['\.pyc']
+	let NERDTreeIgnore=['\.pyc','\~$','\.swp']
 	let NERDTreeRespectWildIgnore=1
-	" 注释
+    let g:NERDTreeIndicatorMapCustom = {
+                \ "Modified"  : "✹",
+                \ "Staged"    : "✚",
+                \ "Untracked" : "✭",
+                \ "Renamed"   : "➜",
+                \ "Unmerged"  : "═",
+                \ "Deleted"   : "✖",
+                \ "Dirty"     : "✗",
+                \ "Clean"     : "✔︎",
+                \ "Unknown"   : "?"
+                \ }
+
+    " 注释
     let g:NERDSpaceDelims=1
-	" 默认关闭参考线
-	let g:indentLine_enabled = 0
+
+    " 默认关闭参考线
+    let g:indentLine_enabled = 0
 
     " 状态条
     let g:airline_powerline_fonts = 1
@@ -20,8 +37,9 @@ augroup General
 
     " 眼球追踪
     let g:EasyMotion_smartcase = 1
-    "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-    
+    let g:EasyMotion_startofline = 0
+    " keep cursor colum when JK motion
+
     " Gundo 插件
     let g:gundo_width = 60
     let g:gundo_preview_height = 40
@@ -51,6 +69,38 @@ augroup END
 augroup AutoMkdir
     autocmd!
     autocmd  BufNewFile  *  :call EnsureDirExists()
+augroup END
+
+augroup AutoHeader
+    autocmd!
+    autocmd BufNewFile *.go,*.sh,*.py,*.rb exec ":call SetTitle()" 
+
+    func! SetTitle() 
+
+        if expand("%:e") == 'go'
+            call setline(1,"package ".expand("%:p:h:t"))
+            call append(line("."), "")
+
+        elseif &filetype == 'sh' 
+            call setline(1,"\#!/bin/bash") 
+            call append(line("."), "") 
+
+        elseif &filetype == 'python'
+            call setline(1,"#!/usr/bin/env python")
+            call append(line("."),"# -*- coding: utf-8 -*-")
+            call append(line(".")+1, "") 
+
+        elseif &filetype == 'ruby'
+            call setline(1,"#!/usr/bin/env ruby")
+            call append(line("."),"# encoding: utf-8")
+            call append(line(".")+1, "")
+
+        endif
+
+        autocmd BufNewFile * normal G
+
+    endfunc 
+
 augroup END
 
 augroup CtrlSpace
@@ -157,65 +207,76 @@ augroup END
 augroup YCM
     autocmd!
     " let g:ycm_python_binary_path = '/usr/local/opt/python/bin/python2.7'
-    let g:ycm_collect_identifiers_from_tags_files = 1
-    let g:ycm_seed_identifiers_with_syntax = 1
-    let g:ycm_confirm_extra_conf = 0
-    let g:ycm_min_num_of_chars_for_completion = 5
-    let g:ycm_auto_trigger = 0
-    let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
-    let g:ycm_show_diagnostics_ui = 0
+    " let g:ycm_collect_identifiers_from_tags_files = 1
+    " let g:ycm_seed_identifiers_with_syntax = 1
+    " let g:ycm_confirm_extra_conf = 0
+    " let g:ycm_min_num_of_chars_for_completion = 5
+    " let g:ycm_auto_trigger = 1
+    " let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+    " let g:ycm_show_diagnostics_ui = 0
     let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
     let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-    let g:ycm_filetype_whitelist = { 
-                \ 'go': 1 ,
-                \ 'python': 1 
-                \ }
+    " let g:ycm_filetype_whitelist = { 
+    "             \ 'go': 1 ,
+    "             \ 'python': 1 
+    "             \ }
     " 代码提示关键字
-    let g:ycm_semantic_triggers = {
-				\ 'elm' : ['.'],
-				\}
+    let g:ycm_semantic_triggers =  {
+                \   'c' : ['->', '.'],
+                \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+                \             're!\[.*\]\s'],
+                \   'ocaml' : ['.', '#'],
+                \   'cpp,objcpp' : ['->', '.', '::'],
+                \   'perl' : ['->'],
+                \   'php' : ['->', '::'],
+                \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go,elm' : ['.'],
+                \   'ruby' : ['.', '::'],
+                \   'lua' : ['.', ':'],
+                \   'erlang' : [':'],
+                \ }
 augroup END
 
 augroup Syntastic
-	autocmd!
+    autocmd!
     "syntastic相关
     " set statusline+=%#warningmsg#
     " set statusline+=%{SyntasticStatuslineFlag()}
     " set statusline+=%*
     let g:syntastic_quiet_messages = {'level': 'warnings'}
-    let g:syntastic_check_on_open=1
+    let g:syntastic_check_on_open=0
     let g:syntastic_error_symbol='✗'
     let g:syntastic_warning_symbol='⚠'
 
-	let g:syntastic_python_checkers=['pylint']
-	let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-	let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-	let g:syntastic_javascript_checkers = ['eslint', 'jslint']
-	let g:syntastic_mode_map = { 'mode': 'passive', 
+    let g:syntastic_python_checkers=['pylint']
+    let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+    let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+    let g:syntastic_javascript_checkers = ['eslint']
+    let g:syntastic_json_checkers = ['jsonlint']
+    let g:syntastic_mode_map = { 'mode': 'passive', 
                 \ 'active_filetypes': ['python', 'javascript'],
                 \ 'passive_filetypes': ['go'] 
                 \ }
 augroup END
 
 augroup Frontend
-	autocmd!
-	" Javascript代码检查
-	let $JS_CMD='node'
-	let g:JSLintHighlightErrorLine = 0
+    autocmd!
+    " Javascript代码检查
+    let $JS_CMD='node'
+    let g:JSLintHighlightErrorLine = 0
 
-	" frontend
-	let g:javascript_enable_domhtmlcss = 1
-	let g:javascript_fold = 0
-	let g:javascript_conceal_function       = "ƒ"
-	let g:javascript_conceal_null           = "ø"
-	let g:javascript_conceal_this           = "@"
-	let g:javascript_conceal_return         = "⇚"
-	let g:javascript_conceal_undefined      = "¿"
-	let g:javascript_conceal_NaN            = "ℕ"
-	let g:javascript_conceal_prototype      = "¶"
-	let g:javascript_conceal_static         = "•"
-	let g:javascript_conceal_super          = "Ω"
-	let g:javascript_conceal_arrow_function = "⇒"
+    " frontend
+    let g:javascript_enable_domhtmlcss = 1
+    let g:javascript_fold = 0
+    let g:javascript_conceal_function       = "ƒ"
+    let g:javascript_conceal_null           = "ø"
+    let g:javascript_conceal_this           = "@"
+    let g:javascript_conceal_return         = "⇚"
+    let g:javascript_conceal_undefined      = "¿"
+    let g:javascript_conceal_NaN            = "ℕ"
+    let g:javascript_conceal_prototype      = "¶"
+    let g:javascript_conceal_static         = "•"
+    let g:javascript_conceal_super          = "Ω"
+    let g:javascript_conceal_arrow_function = "⇒"
 
     " Html css
     let g:closetag_html_style=1
@@ -226,29 +287,29 @@ augroup END
 
 augroup Go
     autocmd!
-	" golang
-	" let $GOPATH = $HOME."/source/goenv"
-	" let g:go_bin_path = $HOME."/source/goenv/bin"
-	let g:go_disable_autoinstall = 0
-	let g:go_highlight_functions = 1
-	let g:go_highlight_methods = 1
-	let g:go_highlight_structs = 1
-	let g:go_highlight_operators = 1
-	let g:go_highlight_build_constraints = 1
-	" let g:fencview_autodetect=0
-	" set rtp+=$GOROOT/github.com/nsf/gocode/vim
-	let g:go_fmt_command = "goimports"
-	" let g:go_fmt_fail_silently = 1
-	" let g:go_fmt_autosave = 1
-	" let g:go_play_open_browser = 0
-	" let g:go_term_mode = "split"
-	" let g:go_term_enabled = 1
+    " golang
+    " let $GOPATH = $HOME."/source/goenv"
+    " let g:go_bin_path = $HOME."/source/goenv/bin"
+    let g:go_disable_autoinstall = 0
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_build_constraints = 1
+    " let g:fencview_autodetect=0
+    " set rtp+=$GOROOT/github.com/nsf/gocode/vim
+    let g:go_fmt_command = "goimports"
+    " let g:go_fmt_fail_silently = 1
+    " let g:go_fmt_autosave = 1
+    " let g:go_play_open_browser = 0
+    " let g:go_term_mode = "split"
+    " let g:go_term_enabled = 1
     autocmd FileType go set noexpandtab
     autocmd FileType go set foldmethod=indent
 augroup END
 
 augroup Elm
-	autocmd!
+    autocmd!
     let g:elm_jump_to_error = 1
     " let g:elm_make_output_file = "../dist/elm.js"
     let g:elm_make_show_warnings = 1
@@ -282,4 +343,3 @@ augroup END
 
 " augroup
 " augroup END
-

@@ -54,9 +54,6 @@ set softtabstop=4
 " 如果希望进行这样的替换的话，可以使用这条命令“:retab”。
 set et
 
-" 关闭自动注释
-set formatoptions-=r
-
 " 当使用 et 将 Tab 替换为空格之后，
 " 按下一个 Tab 键就能插入 4 个空格，
 " 但要想删除这 4 个空格，就得按 4 下 Backspace，很不方便。
@@ -130,6 +127,9 @@ set iskeyword+=_,$,@,%,#,-
 " B 表示将两行合并为一行的时候，汉字与汉字之间不要补空格。
 " 该命令支持的更多的选项请参看用户手册。
 set fo+=mB
+" 关闭自动注释
+set formatoptions-=o
+autocmd FileType * setlocal formatoptions-=o
 
 set sm
 " 增强模式中的命令行自动完成操作
@@ -287,6 +287,7 @@ autocmd InsertLeave * se nocul  " 用浅色高亮当前行
 autocmd InsertEnter * se cul    " 用浅色高亮当前行
 
 " autocmd FileType c,go,javascript,python,rust,erlang,elixir,xml,yml,perl,sql autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+autocmd FileType *.json set filetype=json
 autocmd FileType haskell,erlang,elixir,raml,yml,yaml setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType haskell setlocal commentstring=--\ %s
 autocmd FileType haskell,rust setlocal nospell
