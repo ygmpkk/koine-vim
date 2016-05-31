@@ -138,23 +138,9 @@ augroup Startify
                 \ 'bower_components/*',
                 \ ]
 
-    let g:startify_bookmarks = [
-                \ {'a1': '~/workspace'},
-                \ {'a2': '~/workspace/idcos'},
-                \ {'a3': '~/workspace/idcos/idcos-puppet-config'},
-                \ {'a4': '~/workspace/idcos/pack-cmd'},
-                \ {'a5': '~/workspace/iotalabs'},
-                \ {'a6': '~/workspace/iotalabs/src/github.com/iotalabs'},
-                \ {'a7': '~/workspace/shell-labs'},
-                \ {'a8': '~/workspace/shell-labs/chenyu'},
-                \ {'a9': '~/workspace/ygmpkk'},
-                \ {'aa': '~/workspace/ygmpkk/src/github.com/ygmpkk'},
-                \ {'ab': '~/workspace/timothy'},
-                \ {'ac': '~/Documents/Notes'},
-                \ {'ad': '~/workspace/idcos/hf-cfg-manager'},
-                \ {'ae': '~/workspace/idcos/hf-cfg-manager-ui'},
-                \ {'af': '~/workspace/idcos/hf-cmdbs-web'},
-                \ ]
+    if filereadable(expand("~/.startify_bookmarks"))
+        source ~/.startify_bookmarks
+    endif 
 
     let g:startify_transformations = [
                 \ ['.*vimrc$', 'vimrc'],
