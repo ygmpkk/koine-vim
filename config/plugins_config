@@ -106,10 +106,10 @@ augroup END
 augroup CtrlSpace
     autocmd!
     " 文件搜索
-    hi link CtrlSpaceNormal   PMenu
+    hi link CtrlSpaceNormal   Normal
     hi link CtrlSpaceSelected CursorLine
     hi link CtrlSpaceSearch   Search
-    hi link CtrlSpaceStatus   StatusLine
+    hi link CtrlSpaceStatus   Constant
     let g:CtrlSpaceUseUnicode = 1
     let g:CtrlSpaceProjectRootMarkers = [
                 \ ".git",
@@ -122,7 +122,7 @@ augroup CtrlSpace
                 \ "bower_components",
                 \ "vendor"
                 \ ]
-    let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp|\.\*pyc)[\/]'
+    let g:CtrlSpaceIgnoredFiles = '\v(tmp|temp|node_modules|bower_components|\.\*pyc)[\/]'
     let g:CtrlSpaceSearchTiming = 500
     if executable("ag")
         let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
@@ -154,6 +154,7 @@ augroup Startify
     let g:startify_session_delete_buffers = 1
     let g:startify_session_persistence = 1
     let g:startify_update_oldfiles = 1
+    " 需要 base 的 ~/.profile 或 zsh 的 ~/.zprofile
 	let g:startify_use_env = 1
 	let g:startify_files_number = 20
 augroup END
@@ -162,32 +163,56 @@ augroup Tagbar
 	autocmd!
 	" tagbar
 	let g:tagbar_type_go = {
-				\ 'ctagstype' : 'go',
+                \ 'ctagstype' : 'go',
 				\ 'kinds'     : [
-				\ 'p:package',
-				\ 'i:imports:1',
-				\ 'c:constants',
-				\ 'v:variables',
-				\ 't:types',
-				\ 'n:interfaces',
-				\ 'w:fields',
-				\ 'e:embedded',
-				\ 'm:methods',
-				\ 'r:constructor',
-				\ 'f:functions'
+                    \ 'p:package',
+                    \ 'i:imports:1',
+                    \ 'c:constants',
+                    \ 'v:variables',
+                    \ 't:types',
+                    \ 'n:interfaces',
+                    \ 'w:fields',
+                    \ 'e:embedded',
+                    \ 'm:methods',
+                    \ 'r:constructor',
+                    \ 'f:functions'
 				\ ],
 				\ 'sro' : '.',
 				\ 'kind2scope' : {
-				\ 't' : 'ctype',
-				\ 'n' : 'ntype'
+                    \ 't' : 'ctype',
+                    \ 'n' : 'ntype'
 				\ },
 				\ 'scope2kind' : {
-				\ 'ctype' : 't',
-				\ 'ntype' : 'n'
+                    \ 'ctype' : 't',
+                    \ 'ntype' : 'n'
 				\ },
 				\ 'ctagsbin'  : 'gotags',
 				\ 'ctagsargs' : '-sort -silent'
 				\ }
+
+	let g:tagbar_type_elixir = {
+                \ 'ctagstype' : 'elixir',
+                \ 'kinds' : [
+                    \ 'f:functions',
+                    \ 'functions:functions',
+                    \ 'c:callbacks',
+                    \ 'd:delegates',
+                    \ 'e:exceptions',
+                    \ 'i:implementations',
+                    \ 'a:macros',
+                    \ 'o:operators',
+                    \ 'm:modules',
+                    \ 'p:protocols',
+                    \ 'r:records'
+                \ ],
+                \ 'sro': '.',
+                \ 'kind2scope': {
+                    \ 'm': 'modules'
+                \ },
+                \ 'scope2kind': {
+                    \ 'modules': 'm'
+                \ }
+            \ }
 augroup END
 
 augroup YCM
