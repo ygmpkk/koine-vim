@@ -86,7 +86,6 @@ Plug 'ten0s/syntaxerl'
 " Elixir
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
-Plug 'mmorearty/elixir-ctags'
 " 前端
 " Javascript
 Plug 'othree/html5.vim'
