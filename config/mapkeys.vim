@@ -7,7 +7,7 @@ let maplocalleader = "\\"
 " F系列快捷键
 " {{{
 " 重新Build YCM
-nmap <silent> <F2> :YcmForceCompileAndDiagnostics<CR>
+" nmap <silent> <F2> :YcmForceCompileAndDiagnostics<CR>
 " 快速搜索文件
 nmap <silent> <F3> :CtrlSpace O<CR>
 " 撤销树
@@ -72,10 +72,18 @@ nmap <silent> <leader>yd :Yde<CR>
 " 搜索
 nmap <leader><space> :nohlsearch<CR>
 nmap <silent><C-p> :CtrlSpace O<CR>
+nmap <silent><leader>ph :CtrlSpace h<CR>
+nmap <silent><leader>pH :CtrlSpace H<CR>
+nmap <silent><leader>pb :CtrlSpace b<CR>
+nmap <silent><leader>pB :CtrlSpace B<CR>
+nmap <silent><leader>pw :CtrlSpace w<CR>
+nmap <silent><leader>pW :CtrlSpace W<CR>
 
 " 自动补全
 let g:ycm_key_invoke_completion = '<C-p>'
 let g:ycm_key_detailed_diagnostics = '<leader>d'
+
+" Elixir
 
 " 代码片段
 let g:UltiSnipsExpandTrigger="<C-g>"
@@ -91,15 +99,15 @@ vmap <d-c> :w !pbcopy<CR><CR>
 
 " Buffer
 " 映射<leader>num到num buffer
-" map <leader>1 :b 1<CR>
-" map <leader>2 :b 2<CR>
-" map <leader>3 :b 3<CR>
-" map <leader>4 :b 4<CR>
-" map <leader>5 :b 5<CR>
-" map <leader>6 :b 6<CR>
-" map <leader>7 :b 7<CR>
-" map <leader>8 :b 8<CR>
-" map <leader>9 :b 9<CR>
+map <LocalLeader>1 :b 1<CR>
+map <LocalLeader>2 :b 2<CR>
+map <LocalLeader>3 :b 3<CR>
+map <LocalLeader>4 :b 4<CR>
+map <LocalLeader>5 :b 5<CR>
+map <LocalLeader>6 :b 6<CR>
+map <LocalLeader>7 :b 7<CR>
+map <LocalLeader>8 :b 8<CR>
+map <LocalLeader>9 :b 9<CR>
 
 " 眼球追踪
 " 跳转到当前光标前后的位置(w/b)
@@ -155,6 +163,11 @@ au FileType go nmap <buffer> <LocalLeader>e <Plug>(go-rename)
 au FileType go nmap <buffer> <Localleader>rt <Plug>(go-run-tab)
 au FileType go nmap <buffer> <LocalLeader>rs <Plug>(go-run-split)
 au FileType go nmap <buffer> <LocalLeader>rv <Plug>(go-run-vertical)
+
+" Elm
+" au FileType elm nmap <buffer> <LocalLeader>el <Plug>(ElmEvalLine)
+" au FileType elm nmap <buffer> <LocalLeader>em <Plug>(ElmMakeCurrentFile)
+" au FileType elm vmap <buffer> <LocalLeader>es <Plug>(ElmEvalSelection)
 
 " API Blueprint
 " autocmd FileType apiblueprint nmap <Leader>c :call GenerateRefract()<cr>

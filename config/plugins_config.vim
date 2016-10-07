@@ -227,6 +227,19 @@ augroup YCM
     " let g:ycm_show_diagnostics_ui = 0
     let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
     let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+    let g:ycm_filetype_blacklist = {
+        \ 'elixir' : 1,
+        \ 'tagbar' : 1,
+        \ 'qf' : 1,
+        \ 'notes' : 1,
+        \ 'markdown' : 1,
+        \ 'unite' : 1,
+        \ 'text' : 1,
+        \ 'vimwiki' : 1,
+        \ 'pandoc' : 1,
+        \ 'infolog' : 1,
+        \ 'mail' : 1
+        \}
     " let g:ycm_filetype_whitelist = { 
     "             \ 'go': 1 ,
     "             \ 'python': 1 
@@ -240,7 +253,8 @@ augroup YCM
                 \   'cpp,objcpp' : ['->', '.', '::'],
                 \   'perl' : ['->'],
                 \   'php' : ['->', '::'],
-                \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go,elm' : ['.'],
+                \   'cs,java,typescript,d,python,perl6,scala,vb,go,elm' : ['.'],
+                \   'javascript': ['.', 're!(?=[a-zA-Z]{3,4})'],
                 \   'ruby' : ['.', '::'],
                 \   'lua' : ['.', ':'],
                 \   'erlang' : [':'],
@@ -261,16 +275,35 @@ augroup Syntastic
     let g:syntastic_python_checkers=['pylint']
     let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
     let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+    " let g:syntastic_javascript_checkers = ['eslint', 'jshint', 'jslint']
     let g:syntastic_javascript_checkers = ['eslint']
     let g:syntastic_json_checkers = ['jsonlint']
     let g:syntastic_mode_map = { 'mode': 'passive', 
                 \ 'active_filetypes': ['python', 'javascript'],
                 \ 'passive_filetypes': ['go'] 
                 \ }
+
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:elm_syntastic_show_warnings = 0
+augroup END
+
+augroup UnitTest
+	autocmd!
+	" let test#strategy = {
+	" 			\ 'nearest': 'neovim',
+	" 			\ 'file':    'dispatch',
+	" 			\ 'suite':   'basic',
+	" 			\}
+	let test#go#gotest#executable = 'gb test'
 augroup END
 
 augroup Frontend
     autocmd!
+    " 加载.editorconfig文件的配置
+    let g:EditorConfig_core_mode = 'external_command'
+    " let g:EditorConfig_verbose = 1
+
     " Javascript代码检查
     let $JS_CMD='node'
     let g:JSLintHighlightErrorLine = 0
@@ -289,11 +322,27 @@ augroup Frontend
     let g:javascript_conceal_super          = "Ω"
     let g:javascript_conceal_arrow_function = "⇒"
 
+    " JSDOC
+    let g:javascript_plugin_jsdoc = 1
+    let g:javascript_plugin_ngdoc = 1
+    let g:javascript_plugin_flow = 1
+
+    let g:jsdoc_additional_descriptions = 1
+    " let g:jsdoc_input_description = 1
+    " let g:jsdoc_allow_input_prompt = 1
+    let g:jsdoc_access_descriptions = 0
+    let g:jsdoc_return = 1
+    let g:jsdoc_return_type = 1
+    let g:jsdoc_return_description = 1
+    let g:jsdoc_enable_es6 = 1
+    let g:jsdoc_allow_shorthand = 1
+
     " Html css
     let g:closetag_html_style=1
 
     " 自动闭合
     autocmd FileType xml,html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
+    " autocmd BufReadPost *.{js,coffee} nnoremap <buffer> K :TernDoc<CR>
 augroup END
 
 augroup Go
@@ -301,6 +350,7 @@ augroup Go
     " golang
     " let $GOPATH = $HOME."/source/goenv"
     " let g:go_bin_path = $HOME."/source/goenv/bin"
+    let go_def_mapping_enabled = 0
     let g:go_disable_autoinstall = 0
     let g:go_highlight_functions = 1
     let g:go_highlight_methods = 1
@@ -319,17 +369,28 @@ augroup Go
     autocmd FileType go set foldmethod=indent
 augroup END
 
+augroup Elixir
+    autocmd!
+    " let g:elixir_showerror = 1
+    " let g:elixir_autobuild = 1
+augroup END
+
 augroup Elm
     autocmd!
-    let g:elm_jump_to_error = 1
+    let g:elm_jump_to_error = 0
     " let g:elm_make_output_file = "../dist/elm.js"
-    let g:elm_make_show_warnings = 1
-    let g:elm_syntastic_show_warnings = 0
+    let g:elm_make_show_warnings = 0
     let g:elm_browser_command = ""
-    let g:elm_detailed_complete = 0
+    let g:elm_detailed_complete = 1
     let g:elm_format_autosave = 1
-    let g:elm_setup_keybindings = 1
-    let g:elm_classic_hightlighting = 1
+    let g:elm_setup_keybindings = 0
+    let g:elm_classic_hightlighting = 0
+augroup END
+
+augroup React
+    autocmd!
+    let g:jsx_ext_required = 0
+    " let g:jsx_pragma_required = 1
 augroup END
 
 augroup Written
@@ -339,17 +400,41 @@ augroup Written
     let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 
     " TaskPaper
-    let g:task_paper_date_format = "%Y-%m-%d %H:%M:%S"
-    let g:task_paper_archive_project = "~/Documents/Notes"
+    " let g:task_paper_date_format = "%Y-%m-%d %H:%M:%S"
+    " let g:task_paper_archive_project = "~/Documents/Notes"
 
     " Note 插件
     let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Notes']
     let g:notes_suffix = '.taskpaper'
     " 'no' 'change_title' 'rename_file'
     let g:notes_title_sync = 'rename_file'
-    let g:notes_unicode_enabled = 0
+    let g:notes_unicode_enabled = 1
     let g:notes_smart_quotes = 1
     let g:notes_word_boundaries = 1
+augroup END
+
+augroup Python
+    " 代码检查
+    let g:pymode_lint_ignore = "E501,E221,E251,W"
+    " 错误标识
+    let g:pymode_lint_signs = 1
+    " let g:pymode_lint_on_fly = 1
+    let g:pymode_lint_todo_symbol = '➜'
+    let g:pymode_lint_comment_symbol = '✡'
+    let g:pymode_lint_visual_symbol = '⎈'
+    let g:pymode_lint_error_symbol = '✘'
+    let g:pymode_lint_info_symbol = '✪'
+    let g:pymode_lint_pyflakes_symbol = '✇'
+
+    let g:pymode_rope_lookup_project = 1
+    let g:pymode_rope_completion = 1
+    let g:pymode_rope_complete_on_dot = 0
+    let g:pymode_rope_completion_bind = '<C-P>'
+augroup END
+
+augroup HeaderComment
+    let g:header_comment_author = "Timothy Yeh"
+    let g:header_comment_copyright = ""
 augroup END
 
 " augroup

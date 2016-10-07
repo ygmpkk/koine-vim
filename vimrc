@@ -7,26 +7,26 @@
 " ##    ##  #######  #### ##    ## ########       ###    #### ##     ##
 
 " 使用before如果可用
-if filereadable(expand("~/.vimrc.before"))
-    source ~/.vimrc.before
+if filereadable(expand("~/.vimrc.before.vim"))
+    source ~/.vimrc.before.vim
 endif
 
 " 使用创建配置
-if filereadable(expand("~/.vimrc.bundles"))
-    source ~/.vimrc.bundles
+if filereadable(expand("~/.vimrc.bundles.vim"))
+    source ~/.vimrc.bundles.vim
 endif
 
 " 外部配置
-if filereadable(expand("~/.vim/config/plugins"))
-    source ~/.vim/config/plugins
+if filereadable(expand("~/.vim/config/plugins.vim"))
+    source ~/.vim/config/plugins.vim
 endif
 
-if filereadable(expand("~/.vim/config/plugins_config"))
-    source ~/.vim/config/plugins_config
+if filereadable(expand("~/.vim/config/plugins_config.vim"))
+    source ~/.vim/config/plugins_config.vim
 endif
 
-if filereadable(expand("~/.vim/config/mapkeys"))
-    source ~/.vim/config/mapkeys
+if filereadable(expand("~/.vim/config/mapkeys.vim"))
+    source ~/.vim/config/mapkeys.vim
 endif
 
 """"""""""""
@@ -259,13 +259,13 @@ set laststatus=2
 " set scrolloff=3
 
 " 允许折叠
-set foldenable
+set nofoldenable
 
 " 手动折叠
-set foldmethod=marker
+" set foldmethod=marker
 " set foldmethod=indent
-set foldcolumn=0
-set foldlevel=3
+" set foldcolumn=0
+" set foldlevel=3
 
 " 按键配置
 set mouse=v
@@ -375,8 +375,8 @@ endif
 if has('gui_running')
     au GUIEnter * set vb t_vb=
 
-    if filereadable(expand("~/.vim/config/gui"))
-        source ~/.vim/config/gui
+    if filereadable(expand("~/.vim/config/gui.vim"))
+        source ~/.vim/config/gui.vim
     endif
 endif
 
@@ -392,7 +392,7 @@ if has('nvim')
     set ttimeout
     set ttimeoutlen=0
 
-    if filereadable(expand("~/.vim/config/nvim"))
-        source ~/.vim/config/nvim
+    if filereadable(expand("~/.vim/config/nvim.vim"))
+        source ~/.vim/config/nvim.vim
     endif
 endif
