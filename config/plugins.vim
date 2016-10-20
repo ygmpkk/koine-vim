@@ -1,5 +1,10 @@
 " vim: set ft=vim;
 
+function! Cond(cond, ...)
+    let opts = get(a:000, 0, {})
+    return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+
 call plug#begin('~/.vim/bundle')
 
 """"""
@@ -47,13 +52,18 @@ Plug 'rking/ag.vim'
 """"""
 " 写作
 """"""
+Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'jszakmeister/markdown2ctags'
+Plug 'junegunn/goyo.vim'
+Plug 'amix/vim-zenroom2'
 Plug 'IN3D/vim-raml', {'for': 'raml'}
 Plug 'leshill/vim-json', {'for': 'json'}
 
 """"""
 " 编程
 """"""
+Plug 'floobits/floobits-neovim', Cond(has('nvim'), { 'do': function('hooks#remote') })
 Plug 'ygmpkk/vim-header-comment'
 Plug 'janko-m/vim-test'
 Plug 'jrosiek/vim-mark'
@@ -76,10 +86,22 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Git撤销树
 Plug 'vim-scripts/Gundo'
+
 " 代码提示
-Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
-Plug '/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'carlitux/deoplete-ternjs'
+    Plug 'landaire/deoplete-swift'
+    Plug 'awetzel/elixir.nvim'
+    Plug 'zchee/deoplete-go'
+    Plug 'zchee/deoplete-jedi'
+    Plug 'steelsojka/deoplete-flow'
+else
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py'}
+endif
+
 " Golang
 Plug 'fatih/vim-go', {'for': 'go', 'tag': '*'}
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
@@ -98,6 +120,7 @@ Plug 'editorconfig/editorconfig-vim'
 " Plug 'MattesGroeger/vim-bookmarks'
 " Javascript
 Plug 'ternjs/tern_for_vim', {'do': 'npm install', 'for': ['javascript', 'jsx', 'javascript.jsx']}
+Plug 'flowtype/vim-flow', {'do': 'npm install', 'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'pangloss/vim-javascript', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'othree/yajs.vim', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript', 'jsx', 'javascript.jsx']}

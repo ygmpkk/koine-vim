@@ -1,14 +1,14 @@
 " vim:set ft=vim;
 
 augroup General
-	autocmd!
+    autocmd!
 
-	" 最后打开的位置
-	let g:lastplace_ignore = "gitcommit,svn,hg,hgcommit,asciidoc"
+    " 最后打开的位置
+    let g:lastplace_ignore = "gitcommit,svn,hg,hgcommit,asciidoc"
 
-	" 文件导航
-	let NERDTreeIgnore=['\.pyc','\~$','\.swp']
-	let NERDTreeRespectWildIgnore=1
+    " 文件导航
+    let NERDTreeIgnore=['\.pyc','\~$','\.swp']
+    let NERDTreeRespectWildIgnore=1
     let g:NERDTreeIndicatorMapCustom = {
                 \ "Modified"  : "✹",
                 \ "Staged"    : "✚",
@@ -155,110 +155,132 @@ augroup Startify
     let g:startify_session_persistence = 1
     let g:startify_update_oldfiles = 1
     " 需要 base 的 ~/.profile 或 zsh 的 ~/.zprofile
-	let g:startify_use_env = 1
-	let g:startify_files_number = 20
+    let g:startify_use_env = 1
+    let g:startify_files_number = 20
 augroup END
 
 augroup Tagbar
-	autocmd!
-	" tagbar
-	let g:tagbar_type_go = {
+    autocmd!
+    " tagbar
+    let g:tagbar_type_go = {
                 \ 'ctagstype' : 'go',
-				\ 'kinds'     : [
-                    \ 'p:package',
-                    \ 'i:imports:1',
-                    \ 'c:constants',
-                    \ 'v:variables',
-                    \ 't:types',
-                    \ 'n:interfaces',
-                    \ 'w:fields',
-                    \ 'e:embedded',
-                    \ 'm:methods',
-                    \ 'r:constructor',
-                    \ 'f:functions'
-				\ ],
-				\ 'sro' : '.',
-				\ 'kind2scope' : {
-                    \ 't' : 'ctype',
-                    \ 'n' : 'ntype'
-				\ },
-				\ 'scope2kind' : {
-                    \ 'ctype' : 't',
-                    \ 'ntype' : 'n'
-				\ },
-				\ 'ctagsbin'  : 'gotags',
-				\ 'ctagsargs' : '-sort -silent'
-				\ }
+                \ 'kinds'     : [
+                \ 'p:package',
+                \ 'i:imports:1',
+                \ 'c:constants',
+                \ 'v:variables',
+                \ 't:types',
+                \ 'n:interfaces',
+                \ 'w:fields',
+                \ 'e:embedded',
+                \ 'm:methods',
+                \ 'r:constructor',
+                \ 'f:functions'
+                \ ],
+                \ 'sro' : '.',
+                \ 'kind2scope' : {
+                \ 't' : 'ctype',
+                \ 'n' : 'ntype'
+                \ },
+                \ 'scope2kind' : {
+                \ 'ctype' : 't',
+                \ 'ntype' : 'n'
+                \ },
+                \ 'ctagsbin'  : 'gotags',
+                \ 'ctagsargs' : '-sort -silent'
+                \ }
 
-	let g:tagbar_type_elixir = {
+    let g:tagbar_type_elixir = {
                 \ 'ctagstype' : 'elixir',
                 \ 'kinds' : [
-                    \ 'f:functions',
-                    \ 'functions:functions',
-                    \ 'c:callbacks',
-                    \ 'd:delegates',
-                    \ 'e:exceptions',
-                    \ 'i:implementations',
-                    \ 'a:macros',
-                    \ 'o:operators',
-                    \ 'm:modules',
-                    \ 'p:protocols',
-                    \ 'r:records'
+                \ 'f:functions',
+                \ 'functions:functions',
+                \ 'c:callbacks',
+                \ 'd:delegates',
+                \ 'e:exceptions',
+                \ 'i:implementations',
+                \ 'a:macros',
+                \ 'o:operators',
+                \ 'm:modules',
+                \ 'p:protocols',
+                \ 'r:records'
                 \ ],
                 \ 'sro': '.',
                 \ 'kind2scope': {
-                    \ 'm': 'modules'
+                \ 'm': 'modules'
                 \ },
                 \ 'scope2kind': {
-                    \ 'modules': 'm'
+                \ 'modules': 'm'
                 \ }
-            \ }
+                \ }
+
+    let g:tagbar_type_markdown = {
+                \ 'ctagstype' : 'markdown',
+                \ 'ctagsbin' : '~/.vim/bundle/markdown2ctags/markdown2ctags.py',
+                \ 'ctagsargs' : '-f - --sort=yes',
+                \ 'kinds' : [
+                \ 's:sections',
+                \ 'i:images'
+                \ ],
+                \ 'sro' : '|',
+                \ 'kind2scope' : {
+                \ 's' : 'section',
+                \ },
+                \ 'sort': 0,
+                \ }
 augroup END
 
-augroup YCM
+augroup Completion
     autocmd!
-    " let g:ycm_python_binary_path = '/usr/local/opt/python/bin/python2.7'
-    " let g:ycm_collect_identifiers_from_tags_files = 1
-    " let g:ycm_seed_identifiers_with_syntax = 1
-    " let g:ycm_confirm_extra_conf = 0
-    " let g:ycm_min_num_of_chars_for_completion = 5
-    " let g:ycm_auto_trigger = 1
-    " let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
-    " let g:ycm_show_diagnostics_ui = 0
-    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-    let g:ycm_filetype_blacklist = {
-        \ 'elixir' : 1,
-        \ 'tagbar' : 1,
-        \ 'qf' : 1,
-        \ 'notes' : 1,
-        \ 'markdown' : 1,
-        \ 'unite' : 1,
-        \ 'text' : 1,
-        \ 'vimwiki' : 1,
-        \ 'pandoc' : 1,
-        \ 'infolog' : 1,
-        \ 'mail' : 1
-        \}
-    " let g:ycm_filetype_whitelist = { 
-    "             \ 'go': 1 ,
-    "             \ 'python': 1 
-    "             \ }
-    " 代码提示关键字
-    let g:ycm_semantic_triggers =  {
-                \   'c' : ['->', '.'],
-                \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-                \             're!\[.*\]\s'],
-                \   'ocaml' : ['.', '#'],
-                \   'cpp,objcpp' : ['->', '.', '::'],
-                \   'perl' : ['->'],
-                \   'php' : ['->', '::'],
-                \   'cs,java,typescript,d,python,perl6,scala,vb,go,elm' : ['.'],
-                \   'javascript': ['.', 're!(?=[a-zA-Z]{3,4})'],
-                \   'ruby' : ['.', '::'],
-                \   'lua' : ['.', ':'],
-                \   'erlang' : [':'],
-                \ }
+    if has('nvim')
+        let g:deoplete#enable_at_startup = 1
+        let g:tern_request_timeout = 1
+        " This do disable full signature type on autocomplete
+        let g:tern_show_signature_in_pum = '0'
+    else
+        " let g:ycm_python_binary_path = '/usr/local/opt/python/bin/python2.7'
+        " let g:ycm_collect_identifiers_from_tags_files = 1
+        " let g:ycm_seed_identifiers_with_syntax = 1
+        " let g:ycm_confirm_extra_conf = 0
+        " let g:ycm_min_num_of_chars_for_completion = 5
+        " let g:ycm_auto_trigger = 1
+        " let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+        " let g:ycm_show_diagnostics_ui = 0
+        let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+        let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+        let g:ycm_filetype_blacklist = {
+                    \ 'elixir' : 1,
+                    \ 'tagbar' : 1,
+                    \ 'qf' : 1,
+                    \ 'notes' : 1,
+                    \ 'markdown' : 1,
+                    \ 'unite' : 1,
+                    \ 'text' : 1,
+                    \ 'vimwiki' : 1,
+                    \ 'pandoc' : 1,
+                    \ 'infolog' : 1,
+                    \ 'mail' : 1
+                    \}
+        " let g:ycm_filetype_whitelist = { 
+        "             \ 'go': 1 ,
+        "             \ 'python': 1 
+        "             \ }
+        " 代码提示关键字
+        let g:ycm_semantic_triggers =  {
+                    \   'c' : ['->', '.'],
+                    \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+                    \             're!\[.*\]\s'],
+                    \   'ocaml' : ['.', '#'],
+                    \   'cpp,objcpp' : ['->', '.', '::'],
+                    \   'perl' : ['->'],
+                    \   'php' : ['->', '::'],
+                    \   'cs,java,typescript,d,python,perl6,scala,vb,go,elm' : ['.'],
+                    \   'javascript': ['.', 're!(?=[a-zA-Z]{3,4})'],
+                    \   'ruby' : ['.', '::'],
+                    \   'lua' : ['.', ':'],
+                    \   'erlang' : [':'],
+                    \ }
+    endif
 augroup END
 
 augroup Syntastic
@@ -289,13 +311,13 @@ augroup Syntastic
 augroup END
 
 augroup UnitTest
-	autocmd!
-	" let test#strategy = {
-	" 			\ 'nearest': 'neovim',
-	" 			\ 'file':    'dispatch',
-	" 			\ 'suite':   'basic',
-	" 			\}
-	let test#go#gotest#executable = 'gb test'
+    autocmd!
+    " let test#strategy = {
+    " 			\ 'nearest': 'neovim',
+    " 			\ 'file':    'dispatch',
+    " 			\ 'suite':   'basic',
+    " 			\}
+    let test#go#gotest#executable = 'gb test'
 augroup END
 
 augroup Frontend
@@ -332,17 +354,22 @@ augroup Frontend
     " let g:jsdoc_allow_input_prompt = 1
     let g:jsdoc_access_descriptions = 0
     let g:jsdoc_return = 1
-    let g:jsdoc_return_type = 1
+    " let g:jsdoc_return_type = 1
     let g:jsdoc_return_description = 1
     let g:jsdoc_enable_es6 = 1
-    let g:jsdoc_allow_shorthand = 1
 
     " Html css
     let g:closetag_html_style=1
 
+    let g:tern#command = ["tern"]
+    let g:tern#arguments = ["--persistent"]
+    let g:flow#autoclose = 1
+    let g:flow#qfsize = 0
+
     " 自动闭合
     autocmd FileType xml,html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
     " autocmd BufReadPost *.{js,coffee} nnoremap <buffer> K :TernDoc<CR>
+    " autocmd FileType javascript setlocal omnifunc=tern#Complete
 augroup END
 
 augroup Go
@@ -394,10 +421,12 @@ augroup React
 augroup END
 
 augroup Written
-	autocmd!
+    autocmd!
     " Markdown
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} map <Leader>p :!/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome "%:p"<CR>
     let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+    " let g:vim_markdown_no_default_key_mappings = 1
 
     " TaskPaper
     " let g:task_paper_date_format = "%Y-%m-%d %H:%M:%S"
