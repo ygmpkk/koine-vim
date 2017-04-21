@@ -60,6 +60,11 @@ augroup General
     let g:rbpt_max = 8
     let g:rbpt_loadcmd_toggle = 0
 
+    " tl  开启/关闭tab管理
+    " tf  将光标移动到tab管理窗口
+    let g:tabman_toggle = 'tl'
+    let g:tabman_focus  = 'tf'
+
     au VimEnter * RainbowParenthesesToggle
     au Syntax * RainbowParenthesesLoadRound
     au Syntax c,cpp,go,h,java,python,javascript,scala,coffee RainbowParenthesesLoadSquare
@@ -379,11 +384,11 @@ augroup Go
     " let g:go_bin_path = $HOME."/source/goenv/bin"
     let go_def_mapping_enabled = 0
     let g:go_disable_autoinstall = 0
-    let g:go_highlight_functions = 1
-    let g:go_highlight_methods = 1
-    let g:go_highlight_structs = 1
-    let g:go_highlight_operators = 1
-    let g:go_highlight_build_constraints = 1
+    " let g:go_highlight_functions = 1
+    " let g:go_highlight_methods = 1
+    " let g:go_highlight_structs = 1
+    " let g:go_highlight_operators = 1
+    " let g:go_highlight_build_constraints = 1
     " let g:fencview_autodetect=0
     " set rtp+=$GOROOT/github.com/nsf/gocode/vim
     let g:go_fmt_command = "goimports"
@@ -392,8 +397,9 @@ augroup Go
     " let g:go_play_open_browser = 0
     " let g:go_term_mode = "split"
     " let g:go_term_enabled = 1
+	let g:go_template_autocreate = 0
     autocmd FileType go set noexpandtab
-    autocmd FileType go set foldmethod=indent
+    " autocmd FileType go set foldmethod=indent
 augroup END
 
 augroup Elixir

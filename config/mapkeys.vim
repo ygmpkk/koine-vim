@@ -192,3 +192,7 @@ func! AppendCurrentPath()
     return current
 endfunc
 " }}}
+
+cmap W w
+cmap Q q
+cmap Wq wq

@@ -15,12 +15,14 @@ set guicursor+=r-cr:hor10-Cursor
 " set guicursor+=cm:hor10-Cursor
 
 " 图形字体
-" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11.5
-set guifont=Source_Code_Pro:h11.5
-set guifontwide=Source_Code_Pro:h11.5
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11.5
+set guifontwide=DejaVu\ Sans\ Mono\ for\ Powerline:h11.5
+" set guifont=Source_Code_Pro:h11.5
+" set guifontwide=Source_Code_Pro:h11.5
 
 " CtrlSpace
 let g:CtrlSpaceSymbols = { "File": "◯", "CTab": "▣", "Tabs": "▢" }
+
 
 " 个人设置
 " gui模式下

@@ -80,6 +80,7 @@ Plug 'rizzatti/dash.vim'
 Plug 'scrooloose/syntastic'
 " 补全
 Plug 'tpope/vim-surround'
+Plug 'kien/tabman.vim'
 " Git插件
 Plug 'tpope/vim-fugitive'
 " Git修改指示
@@ -103,8 +104,7 @@ else
 endif
 
 " Golang
-Plug 'fatih/vim-go', {'for': 'go', 'tag': '*'}
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+Plug 'fatih/vim-go'
 " Erlang
 Plug 'vim-erlang/vim-erlang-runtime', {'for': 'erlang'}
 Plug 'vim-erlang/vim-erlang-compiler', {'for': 'erlang'}
@@ -125,12 +125,17 @@ Plug 'pangloss/vim-javascript', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'othree/yajs.vim', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'othree/jsdoc-syntax.vim', {'for': ['javascript', 'jsx', 'javascript.jsx']}
-Plug 'othree/jspc.vim', {'for': ['javascript', 'jsx', 'javascript.jsx']}
+" Plug 'othree/jspc.vim', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'isRuslan/vim-es6', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'jelera/vim-javascript-syntax', {'for': ['javascript', 'jsx', 'javascript.jsx']}
+Plug 'glanotte/vim-jasmine', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'mxw/vim-jsx', {'for': ['jsx', 'javascript.jsx']}
+Plug 'millermedeiros/vim-esformatter', {'for': ['javascript', 'jsx', 'javascript.jsx']}
+Plug 'Quramy/tsuquyomi', {'for': 'typescript'}
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
 " Html
 Plug 'othree/html5.vim', {'for': 'html'}
 Plug 'docunext/closetag.vim', {'for': ['html', 'jsx', 'javascript.jsx']}
@@ -160,7 +165,7 @@ Plug 'vim-scripts/DrawIt'
 " " API Blurprint
 " Plug 'kylef/apiblueprint.vim'
 " " Shell
-" Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim'
 " Plug 'Shougo/vimshell.vim'
 call plug#end()
 " test

@@ -262,8 +262,7 @@ set laststatus=2
 set nofoldenable
 
 " 手动折叠
-" set foldmethod=marker
-" set foldmethod=indent
+set foldmethod=manual
 " set foldcolumn=0
 " set foldlevel=3
 
