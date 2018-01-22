@@ -293,10 +293,10 @@ autocmd FileType haskell,rust setlocal nospell
 autocmd FileType raml,yml,yaml setlocal indentkeys-=<:>
 autocmd FileType git,text setlocal tw=80 fo+=t
 autocmd FileType erlang setlocal com-=:%
-autocmd FileType html,css setlocal iskeyword+=-
+autocmd FileType html,css,less setlocal iskeyword+=-
 
 " 代码提示
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete

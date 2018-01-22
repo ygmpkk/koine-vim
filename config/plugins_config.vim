@@ -65,10 +65,17 @@ augroup General
     let g:tabman_toggle = 'tl'
     let g:tabman_focus  = 'tf'
 
+    " Highlight merge conflict markers
+    match Todo '\v^(\<|\=|\>){7}([^=].+)?$'
+
+    " Jump to next/previous merge conflict marker
+    nnoremap <silent> ]c /\v^(\<\|\=\|\>){7}([^=].+)?$<CR>
+    nnoremap <silent> [c ?\v^(\<\|\=\|\>){7}([^=].+)\?$<CR>
+
     au VimEnter * RainbowParenthesesToggle
     au Syntax * RainbowParenthesesLoadRound
     au Syntax c,cpp,go,h,java,python,javascript,scala,coffee RainbowParenthesesLoadSquare
-    au Syntax c,cpp,go,h,java,python,javascript,scala,coffee,scss  RainbowParenthesesLoadBraces
+    au Syntax c,cpp,go,h,java,python,javascript,scala,coffee,scss,less  RainbowParenthesesLoadBraces
 augroup END
 
 augroup AutoMkdir
@@ -359,22 +366,58 @@ augroup Frontend
     " let g:jsdoc_allow_input_prompt = 1
     let g:jsdoc_access_descriptions = 0
     let g:jsdoc_return = 1
+    " let g:jsdoc_allow_shorthand = 1
     " let g:jsdoc_return_type = 1
     let g:jsdoc_return_description = 1
     let g:jsdoc_enable_es6 = 1
+    let g:jsdoc_user_defined_tags = {
+                \ '@author': 'Timothy <ygmpkk@gmail.com>',
+                \ '@date': strftime('%Y-%m-%d'),
+                \}
+    let g:jsdoc_custom_args_hook = {
+                \ 'e\|event': {
+                \   'type': '{Event}'
+                \ },
+                \ 'err\|error': {
+                \   'type': '{Error}'
+                \ },
+                \ 'data': {
+                \   'type': '{Object}'
+                \ },
+                \ 'options': {
+                \   'type': '{Object}'
+                \ },
+                \ 'callback\|cb': {
+                \   'type': ' {Function} ',
+                \   'description': 'Callback function'
+                \ }
+                \}
 
     " Html css
     let g:closetag_html_style=1
 
     let g:tern#command = ["tern"]
     let g:tern#arguments = ["--persistent"]
+    let g:tern#is_show_argument_hints_enabled = 1
     let g:flow#autoclose = 1
     let g:flow#qfsize = 0
 
     " 自动闭合
-    autocmd FileType xml,html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
+    autocmd FileType wxml,xml,html let b:delimitMate_matchpairs = "(:),[:],{:},<:>"
     " autocmd BufReadPost *.{js,coffee} nnoremap <buffer> K :TernDoc<CR>
     " autocmd FileType javascript setlocal omnifunc=tern#Complete
+    " let g:prettier#autoformat = 0
+    " autocmd BufWritePre *.js,*.jsx,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
+    let g:prettier#exec_cmd_async = 1
+    let g:prettier#config#print_width = 80
+    let g:prettier#config#tab_width = 2
+    let g:prettier#config#use_tabs = 'false'
+    let g:prettier#config#semi = 'false'
+    let g:prettier#config#single_quote = 'true' 
+    let g:prettier#config#bracket_spacing = 'true' 
+    let g:prettier#config#jsx_bracket_same_line = 'true' 
+    let g:prettier#config#trailing_comma = 'es5'
+    let g:prettier#config#parser = 'flow'
 augroup END
 
 augroup Go
@@ -397,7 +440,7 @@ augroup Go
     " let g:go_play_open_browser = 0
     " let g:go_term_mode = "split"
     " let g:go_term_enabled = 1
-	let g:go_template_autocreate = 0
+    let g:go_template_autocreate = 0
     autocmd FileType go set noexpandtab
     " autocmd FileType go set foldmethod=indent
 augroup END
@@ -470,6 +513,13 @@ augroup END
 augroup HeaderComment
     let g:header_comment_author = "Timothy Yeh"
     let g:header_comment_copyright = ""
+augroup END
+
+augroup Format
+    " let g:autoformat_verbosemode = 1
+    let g:formatters_javascript_jsx = ['standard_javascript']
+    let g:formatters_jsx = ['standard_javascript']
+
 augroup END
 
 " augroup

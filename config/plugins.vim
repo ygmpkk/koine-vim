@@ -87,6 +87,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Git撤销树
 Plug 'vim-scripts/Gundo'
+Plug 'rhysd/conflict-marker.vim'
 
 " 代码提示
 Plug 'SirVer/ultisnips'
@@ -129,20 +130,25 @@ Plug 'othree/jsdoc-syntax.vim', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'isRuslan/vim-es6', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'jelera/vim-javascript-syntax', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'glanotte/vim-jasmine', {'for': ['javascript', 'jsx', 'javascript.jsx']}
-Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'jsx', 'javascript.jsx']}
 Plug 'mxw/vim-jsx', {'for': ['jsx', 'javascript.jsx']}
 Plug 'millermedeiros/vim-esformatter', {'for': ['javascript', 'jsx', 'javascript.jsx']}
+Plug 'prettier/vim-prettier', { 
+	\ 'do': 'yarn install', 
+	\ 'for': ['javascript', 'jsx', 'javascript.jsx', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] } 
+Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'Quramy/tsuquyomi', {'for': 'typescript'}
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
 " Html
-Plug 'othree/html5.vim', {'for': 'html'}
-Plug 'docunext/closetag.vim', {'for': ['html', 'jsx', 'javascript.jsx']}
-Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'othree/html5.vim', {'for': ['html', 'ejs', 'hbs']}
+Plug 'docunext/closetag.vim', {'for': ['html', 'jsx', 'javascript.jsx', 'ejs', 'hbs']}
+Plug 'mattn/emmet-vim', {'for': ['html', 'ejs', 'hbs']}
 " Css
 Plug 'groenewege/vim-less', {'for': 'less'}
 Plug 'hail2u/vim-css3-syntax', {'for': ['css', 'less', 'sass', 'scss']}
+Plug 'chemzqm/wxapp.vim'
+Plug 'asins/vim-dict'
 " Elm
 Plug 'elmcast/elm-vim', {'for': 'elm'}
 " Ember
